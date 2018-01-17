@@ -103,13 +103,13 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
 : string 출력
 : atom 1 출력
 
-프로그래밍 언어적 특징들
+*** 프로그래밍 언어적 특징들
 - 산술 연산자는 +, -, *, /
 - 함수 f(x)는 (f x)로 표현된다.
 - 표현식에서 대문자 소문자는 동일 취급한다.
 - 상수적 혹은 primary 타입같은 요소는 오직 세가지 존재하며 숫자, t, nil이다.(t = true, nil = false)
 
-Naming Convention
+*** Naming Convention
 - white-space, (), ", ', `, ;, :, | 를 제외한 모든 문자를 함수명으로 사용할 수 있다.
 - `는 코드 이스케이프 역할을 수행하며 `뒤에 list는 atom으로 해석된다.
 #+BEGIN_SRC elisp :results output
@@ -121,3 +121,130 @@ Naming Convention
 #+RESULTS:
 : 6
 : (+ 3 3)
+** 자료형
+lisp의 변수는 동적인 자료형을 따름으로 대부분은 객체로 표현된다. 하지만 객체화된 자료도 범주를 갖고있다.
+- Scala types - number, character, symbol
+- Data structures - list, vector, bit-vector, string
+자료형을 확인하는 함수로 ~typep~와 ~type-of~가 있다.
+#+BEGIN_SRC elisp :results output
+(prin1 (typep 10 `integer))
+(print (typep t `integer))
+(prin1 (typep t t))
+(print (typep nil t))
+(prin1 (typep nil nil))
+(print (type-of nil))
+(prin1 (type-of t))
+(print (type-of 12))
+#+END_SRC
+
+#+RESULTS:
+: t
+: nil
+: t
+: t
+: nil
+: symbol
+: symbol
+: integer
+typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않으면 nil을 반환하고 type-of는 어떤 자료형인지를 반환한다.
+위에서 주의할 것이 있는데 nil의 자료형이다. t일 경우 t를 반환하지만 nil일 경우 nil을 반환하다.
+
+*** 자료형 표
+| array             | fixnum     | package           | simple-string |
+|-------------------+------------+-------------------+---------------|
+| atom              | float      | pathname          | simple-vector |
+| bignum            | function   | random-state      | single-float  |
+| bit               | hash-table | ratio             | standard-char |
+| bit-vector        | integer    | rational          | stream        |
+| character         | keyword    | readtable         | string        |
+| [common]          | list       | sequence          | [string-char] |
+| compiled-function | long-float | short-float       | symbol        |
+| complex           | nill       | signed-byte       | t             |
+| cons              | null       | simple-array      | unsigned-byte |
+| double-float      | number     | simple-bit-vector | vector        |
+
+** Macro 
+매크로를 통해 lisp의 문법을 변경할 수 있다.
+#+BEGIN_SRC elisp
+(defmacro setTo10(num)
+(setq num 10)(print num))
+(setTo10 25)
+#+END_SRC
+
+#+RESULTS:
+: 10
+
+** 변수
+lisp에서는 변수를 심볼로 표현한다.
+
+전역변수의 선언 방식
+#+BEGIN_SRC elisp
+(defvar x 234)
+(print x)
+#+END_SRC
+
+#+RESULTS:
+: 234
+
+#+BEGIN_SRC elisp
+(setq x 10)
+(print x)
+#+END_SRC
+
+#+RESULTS:
+: 10
+
+지역변수의 선언방식
+#+BEGIN_SRC elisp :results output
+(let ((x `a) (y `b)) (prin1 (format "%s %s" x y)))
+#+END_SRC
+
+#+RESULTS:
+: "a b"
+
+상수의 선언 방식
+#+BEGIN_SRC elisp :results output
+(defconst PI 3.141592)
+(prin1 PI)
+#+END_SRC
+
+#+RESULTS:
+: 3.141592
+
+** 연산자 
+*** 산술 연산자
+| Operator | Description                                                                  | Example                 |
+|----------+------------------------------------------------------------------------------+-------------------------|
+| +        | Adds two operands                                                            | (+A B) will give 30     |
+| -        | Subtracts second operand from the first                                      | (- A B) will give -10   |
+| *        | Multiplies both operands                                                     | (* A B) will give 200   |
+| /        | Divides numerator by de-numerator                                            | (/ B A) will give 2     |
+| mod,rem  | Modulus Operator and remainder of after an integer division                  | (mod B A )will give 0   |
+| incf     | Increments operator increases integer value by the second argument specified | (incf A 3) will give 13 |
+| decf     | Decrements operator decreases integer value by the second argument specified | (decf A 4) will give 9  |
+*** 비교 연산자
+| Operator | Description                                                                                                                              | Example               |
+|----------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------|
+| =        | Checks if the values of the operands are all equal or not, if yes then condition becomes true.                                           | (= A B) is not true.  |
+| /=       | Checks if the values of the operands are all different or not, if values are not equal then condition becomes true.                      | (/= A B) is true.     |
+| >        | Checks if the values of the operands are monotonically decreasing.                                                                       | (> A B) is not true.  |
+| <        | Checks if the values of the operands are monotonically increasing.                                                                       | (< A B) is true.      |
+| >=       | Checks if the value of any left operand is greater than or equal to the value of next right operand, if yes then condition becomes true. | (>= A B) is not true. |
+| <=       | Checks if the value of any left operand is less than or equal to the value of its right operand, if yes then condition becomes true.     | (<= A B) is true.     |
+| max      | It compares two or more arguments and returns the maximum value.                                                                         | (max A B) returns 20  |
+| min      | It compares two or more arguments and returns the minimum value.                                                                         | (min A B) returns 10  |
+*** 논리연산자
+| Operator | Description                                                                                                                                                                                    | Example                    |
+|----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------|
+| and      | It takes any number of arguments. The arguments are evaluated left to right. If all arguments evaluate to non-nil, then the value of the last argument is returned. Otherwise nil is returned. | (and A B) will return NIL. |
+| or       | It takes any number of arguments. The arguments are evaluated left to right until one evaluates to non-nil, in such case the argument value is returned, otherwise it returns nil.             | (or A B) will return 5.    |
+| not      | It takes one argument and returns t if the argument evaluates to nil.                                                                                                                          | (not A) will return T.     |
+|          |                                                                                                                                                                                                |                            |
+*** 이진 연산자
+| Operator | Description                                                                                                                                                                            | Example                     |
+|----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------|
+| logand   | This returns the bit-wise logical AND of its arguments. If no argument is given, then the result is -1, which is an identity for this operation.                                       | (logand a b)) will give 12  |
+| logior   | This returns the bit-wise logical INCLUSIVE OR of its arguments. If no argument is given, then the result is zero, which is an identity for this operation.                            | (logior a b) will give 61   |
+| logxor   | This returns the bit-wise logical EXCLUSIVE OR of its arguments. If no argument is given, then the result is zero, which is an identity for this operation.                            | (logxor a b) will give 49   |
+| lognor   | This returns the bit-wise NOT of its arguments. If no argument is given, then the result is -1, which is an identity for this operation.                                               | (lognor a b) will give -62, |
+| logeqv   | This returns the bit-wise logical EQUIVALENCE (also known as exclusive nor) of its arguments. If no argument is given, then the result is -1, which is an identity for this operation. | (logeqv a b) will give -50  |
