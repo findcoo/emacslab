@@ -248,3 +248,159 @@ lisp에서는 변수를 심볼로 표현한다.
 | logxor   | This returns the bit-wise logical EXCLUSIVE OR of its arguments. If no argument is given, then the result is zero, which is an identity for this operation.                            | (logxor a b) will give 49   |
 | lognor   | This returns the bit-wise NOT of its arguments. If no argument is given, then the result is -1, which is an identity for this operation.                                               | (lognor a b) will give -62, |
 | logeqv   | This returns the bit-wise logical EQUIVALENCE (also known as exclusive nor) of its arguments. If no argument is given, then the result is -1, which is an identity for this operation. | (logeqv a b) will give -50  |
+** 조건문
+*** cond
+#+BEGIN_SRC elisp :results output
+(setq a 10)
+(cond 
+((> a 20) (prin1 "smaller"))
+((< a 20) (prin1 "bigger")))
+#+END_SRC
+
+#+RESULTS:
+: "bigger"
+조건들에 따라 시행되는 form의 연속
+*** if
+#+BEGIN_SRC elisp :results output
+(setq a 10)
+(if (> a 20) (print "bigger") (print "smaller"))
+#+END_SRC
+
+#+RESULTS:
+: 
+: "smaller"
+첫번째 boolean값에 참이면 두 번째 변수를 거짓이면 세번째 변수를 실행한다.
+*** when 
+#+BEGIN_SRC elisp :results output
+(setq a 100)
+(when (> a 20) (print "bigger"))
+#+END_SRC
+
+#+RESULTS:
+: 
+: "bigger"
+if와 달리 조건문이 참일 경우에 만 실행한다.
+*** case
+#+BEGIN_SRC elisp
+(setq day 4)
+(case day
+  (1 (prin1 "Monday"))
+  (2 (prin1 "Tuesday"))
+  (3 (prin1 "Wednseday")) 
+  (4 (prin1 "Friday"))
+  (5 (prin1 "Saturday"))
+  (6 (prin1 "Sunday")))
+#+END_SRC
+
+#+RESULTS:
+: Friday
+** 반복문 
+*** loop
+#+BEGIN_SRC elisp
+(setq a 1)
+(loop
+  (setq a (+ a 1))
+  (when (>= a 10) (return a)))
+#+END_SRC
+
+#+RESULTS:
+: 10
+*** loop for
+#+BEGIN_SRC elisp :results output
+(loop for x in `(a b c)
+  do (prin1 x))
+#+END_SRC
+
+#+RESULTS:
+: abc
+#+BEGIN_SRC elisp :results output
+(loop for x from 10 to 20
+  do (princ (format "%d " x)))
+#+END_SRC
+
+#+RESULTS:
+: 10 11 12 13 14 15 16 17 18 19 20 
+#+BEGIN_SRC elisp :results output
+(loop for x from 1 to 20
+  if(evenp x) do (princ (format "%d " x)))
+#+END_SRC
+
+#+RESULTS:
+: 2 4 6 8 10 12 14 16 18 20 
+*** do 
+#+BEGIN_SRC elisp :results output
+(do 
+  ((x 0 (+ 2 x)) (y 20 (- y 2)))
+  ((= x y)(- x y))
+  (princ (format "x=%d y=%d\n" x y)))
+#+END_SRC
+
+#+RESULTS:
+: x=0 y=20
+: x=2 y=18
+: x=4 y=16
+: x=6 y=14
+: x=8 y=12
+do는 얼핏 보면 생소한 반복문 처럼 보이지만 do while문과 흡사하다.
+do의 두번째 즉 (do (이 부분) 의 값은 변수와 변수의 변화를 정의하는 부분이다.
+(x 0 (+ 2 x))는 즉 x에 초기값 0을 할당하고 이후에는 2씩 증가함을 뜻한다.
+((= x y) (- x y)) 이 부분은 반복시에 값을 검증하여 조건에 부합하면 반복이 종료된다.
+*** dotimes
+#+BEGIN_SRC elisp :results output
+(dotimes (n 11)
+(princ n) (princ (format "-%d " (* n n))))
+#+END_SRC
+
+#+RESULTS:
+: 0-0 1-1 2-4 3-9 4-16 5-25 6-36 7-49 8-64 9-81 10-100 
+*** dolist 
+#+BEGIN_SRC elisp :results output
+(dolist (n `(1 2 3 4 5 6 7 8 9))
+  (princ (format "%d " (* n n))))
+#+END_SRC
+
+#+RESULTS:
+: 1 4 9 16 25 36 49 64 81 
+
+*우아한 블럭 종결 문제*
+javascript 처럼 콜백 체인 형식의 언어 페러다임에서 반환값을 예측하는 것은 매우 힘든일이다.
+#+BEGIN_SRC elisp :results output
+(defun block-test (flag)
+(block first
+  (prin1 (block inner-first
+    (if flag 
+      (return-from first `outer)
+      (return-from inner-first `inner)
+    )
+  ))
+t))
+(block-test t)
+(block-test nil)
+#+END_SRC
+
+#+RESULTS:
+: inner
+** 함수  
+#+BEGIN_SRC elisp
+(defun averageNum (n1 n2 n3)
+  (/ (+ n1 n2 n3) 3))
+(averageNum 3 3 3)
+#+END_SRC
+
+#+RESULTS:
+: 3
+** 숫자 체계
+lisp은 수학 체계를 잘 구현한 언어이다.
+
+#+BEGIN_SRC dot :file images/number-system.svg :exports results
+digraph NumberSystem {
+Number -> {Real Complex};
+Real -> {Rational Float};
+Rational -> {Integer Ratio};
+Integer -> {Bignum Fixnum};
+Float -> {ShortFloat SingleFloat DoubleFloat LongFlot};
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:images/number-system.svg]]
