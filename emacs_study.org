@@ -404,3 +404,114 @@ Float -> {ShortFloat SingleFloat DoubleFloat LongFlot};
 
 #+RESULTS:
 [[file:images/number-system.svg]]
+
+*** 수의 범주별 상세
+| Data type | Description                                                       |
+|-----------+-------------------------------------------------------------------|
+| fixnum    | 대개 -215부터 215-1까지의 정수 표현을 나타낸다.(머신 별로 상이함) |
+| bignum    | 큰 수를 표현하며 메모리의 제한 영역까지 이른다.                   |
+| ratio     | 두 수를 통해 퍼센테이지 비율을 표기한다.                          |
+| float     | 부동 소수점 표현                                                  |
+| complex   | 복소수 표현                                                       |
+
+#+BEGIN_SRC  elisp :results output
+(prin1 (integerp (/ 1 2)))
+(print (integerp (+ (/ 1 2) (/ 3 4))))
+(prin1 (floatp 0.333))
+(print (integerp 0.333))
+(prin1 (integerp (/ 1 3)))
+(print (calc-eval "1+2i"))
+#+END_SRC
+
+#+RESULTS:
+: t
+: t
+: t
+: nil
+: t
+: "2 i + 1"
+위의 수체계는 common lisp에서는 통용되나 emacs lisp에서는 통용되지 않는다. 결정적으로 complex를 지원하지 않는다.
+이는 emacs lisp이 문서 편집에 특화된 언어이기 때문이다.
+* E-Lisp
+common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에 elisp과는 상이한 점이 많다.
+앞서 수의 체계에서도 알 수 있듯이 목표로하는 이점이 다르기 때문이다. 이제 부터는 elisp을 이용한 텍스트 편집에 중점을 두려한다.
+** Text Editing
+*** 커서의 위치
+#+BEGIN_SRC elisp :exports none
+;; 현재 커서의 위치값 왼쪽부터 시작된다.
+(point)
+
+;; 선택된 영역의 커서 위치값
+(region-beginning)
+(region-end)
+
+;; 현재 줄의 커서 위치값 
+(line-beginning-position)
+(line-end-position)
+
+;; 현재 버퍼의 최소/최대 위치값
+(point-max)
+(point-min)
+#+END_SRC
+*** 커서 이동 및 검색 
+#+BEGIN_SRC elisp :exports none
+(goto-char 39)
+
+(forward-char 4)
+(backward-char 4)
+
+(search-forward "some")
+(search-forward "some")
+
+;; 정규표현식을 이용한 검색
+(re-search-forward "[0-9]")
+(re-search-backward "[0-9")
+
+(skip-chars-forward "a-z")
+(skip-chars-backward "a-z")
+#+END_SRC
+*** 문자 삭제/삽입/변환 
+#+BEGIN_SRC elisp :exports none
+(delete-char 9)
+(delete-region 3 10)
+
+(insert "hello")
+
+(setq x (buffer-substring 71 300))
+
+(capitalize-region 71 300)
+#+END_SRC
+*** 문자열
+#+BEGIN_SRC elisp :epxorts none
+(length "abc")
+
+;; a 이후 부터 e까지의 문자열 값
+(substring "abdefg" 1 4 )
+
+;; 십진수 수들을 X로 변환한다.
+(replace-regexp-in-string "[0-9]" "X" "abc123")
+#+END_SRC
+*** 파일 
+#+BEGIN_SRC elisp :exports none
+;; 현재 버퍼에 해당 파일을 연다.
+(find-file "~/.spacemacs")
+
+;; 현재 파일을 저장한다.
+(write-file path)
+
+;; 현재 위치에 해당 파일의 내용을 입력한다. 
+;; spacemacs 에서는 insert-file
+(insert-file-contents path)
+
+;; 현재 버퍼에 내용을 해당 파일에 추가한다.
+(append-to-file start-pos end-pos path)
+
+(rename-file file-name new-name)
+(copy-file old-name new-name)
+(delete-file file-name)
+
+(file-name-directory full-path)
+(file-name-nondirectory full-path)
+(file-name-extenstion file-name)
+(file-name-sans-extension file-name)
+#+END_SRC
