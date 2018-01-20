@@ -1,57 +1,59 @@
 
 # Table of Contents
 
-1.  [Emacs tutorial](#org2cb41b4)
-    1.  [Graphviz](#org76111fd)
-        1.  [dot 문법](#orgf324351)
-        2.  [예제 받아 출력](#org6562570)
-2.  [Lisp](#orgda4f254)
-    1.  [구조](#orgca60bf5)
-        1.  [프로그래밍 언어적 특징들](#org2da0a11)
-        2.  [Naming Convention](#org3af54ed)
-    2.  [자료형](#org4baaa25)
-        1.  [자료형 표](#org32445c7)
-    3.  [Macro](#org0f95967)
-    4.  [변수](#org62c6f91)
-    5.  [연산자](#org20d90d6)
-        1.  [산술 연산자](#orgd95131e)
-        2.  [비교 연산자](#org379cdca)
-        3.  [논리연산자](#orgcedc233)
-        4.  [이진 연산자](#org35ec367)
-    6.  [조건문](#org63a869d)
-        1.  [cond](#org46d4582)
-        2.  [if](#orgf045b6b)
-        3.  [when](#orgfbfb505)
-        4.  [case](#orgc007940)
-    7.  [반복문](#org48ae0b4)
-        1.  [loop](#org179e6d7)
-        2.  [loop for](#org53e0a35)
-        3.  [do](#orgdf4d0de)
-        4.  [dotimes](#org3430d5d)
-        5.  [dolist](#org1e0371f)
-    8.  [함수](#orge6570d9)
-    9.  [숫자 체계](#orga20c2be)
-        1.  [수의 범주별 상세](#orgdac83f4)
-3.  [E-Lisp](#orga798b07)
-    1.  [Text Editing](#org9a84109)
-        1.  [커서의 위치](#org21e1507)
-        2.  [커서 이동 및 검색](#org037cc18)
-        3.  [문자 삭제/삽입/변환](#orge04af5f)
-        4.  [문자열](#org2b488dc)
-        5.  [파일](#orgb983006)
+1.  [Emacs tutorial](#org9384374)
+    1.  [Graphviz](#org06a41e3)
+        1.  [dot 문법](#org6c14a6d)
+        2.  [예제 받아 출력](#orgaeaf378)
+2.  [Lisp](#org7701076)
+    1.  [구조](#orgef92431)
+        1.  [프로그래밍 언어적 특징들](#org92b7f2b)
+        2.  [Naming Convention](#org07ca475)
+    2.  [자료형](#org41b1fc1)
+        1.  [자료형 표](#org896615c)
+    3.  [Macro](#org213a1fe)
+    4.  [변수](#org381b706)
+    5.  [연산자](#org470aec2)
+        1.  [산술 연산자](#orgabb5c73)
+        2.  [비교 연산자](#org0a96939)
+        3.  [논리연산자](#org733116f)
+        4.  [이진 연산자](#org861a4bb)
+    6.  [조건문](#orgab7c51e)
+        1.  [cond](#orgf0805b6)
+        2.  [if](#org1a0ee89)
+        3.  [when](#org9583f25)
+        4.  [case](#org1fa7923)
+    7.  [반복문](#orga89eb96)
+        1.  [loop](#orga0b2f35)
+        2.  [loop for](#org74f48e7)
+        3.  [do](#orge22384b)
+        4.  [dotimes](#orgad56288)
+        5.  [dolist](#org5dfc108)
+    8.  [함수](#orgd606770)
+    9.  [숫자 체계](#org0336715)
+        1.  [수의 범주별 상세](#orgd02b97b)
+3.  [E-Lisp](#org7d4c1ab)
+    1.  [Text Editing](#orgc753992)
+        1.  [커서의 위치](#orgf9a11bb)
+        2.  [커서 이동 및 검색](#org9bb063c)
+        3.  [문자 삭제/삽입/변환](#org96aa96a)
+        4.  [문자열](#org80d935c)
+        5.  [파일](#org8ceb6ed)
+
+\#+TITLE Emacs Lab
 
 
-<a id="org2cb41b4"></a>
+<a id="org9384374"></a>
 
 # Emacs tutorial
 
 
-<a id="org76111fd"></a>
+<a id="org06a41e3"></a>
 
 ## Graphviz
 
 
-<a id="orgf324351"></a>
+<a id="org6c14a6d"></a>
 
 ### dot 문법
 
@@ -71,11 +73,11 @@
     ![img](images/example1.svg)
 
 
-<a id="org6562570"></a>
+<a id="orgaeaf378"></a>
 
 ### 예제 받아 출력
 
-<table id="org72d0ee0" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org45fc37b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -133,7 +135,7 @@
     ![img](images/test-dot2.png)
 
 
-<a id="orgda4f254"></a>
+<a id="org7701076"></a>
 
 # Lisp
 
@@ -142,7 +144,7 @@ emacs를 사용할 때에는 elips을 사용하여 작업을 수행한다. 두�
 다양하고 편리한 함수들이 이미 많이 구축되있다.
 
 
-<a id="orgca60bf5"></a>
+<a id="orgef92431"></a>
 
 ## 구조
 
@@ -175,7 +177,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
     atom 1 출력
 
 
-<a id="org2da0a11"></a>
+<a id="org92b7f2b"></a>
 
 ### 프로그래밍 언어적 특징들
 
@@ -185,7 +187,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
 -   상수적 혹은 primary 타입같은 요소는 오직 세가지 존재하며 숫자, t, nil이다.(t = true, nil = false)
 
 
-<a id="org3af54ed"></a>
+<a id="org07ca475"></a>
 
 ### Naming Convention
 
@@ -200,7 +202,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
     (+ 3 3)
 
 
-<a id="org4baaa25"></a>
+<a id="org41b1fc1"></a>
 
 ## 자료형
 
@@ -233,7 +235,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
 위에서 주의할 것이 있는데 nil의 자료형이다. t일 경우 t를 반환하지만 nil일 경우 nil을 반환하다.
 
 
-<a id="org32445c7"></a>
+<a id="org896615c"></a>
 
 ### 자료형 표
 
@@ -341,7 +343,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
 </table>
 
 
-<a id="org0f95967"></a>
+<a id="org213a1fe"></a>
 
 ## Macro
 
@@ -354,7 +356,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
     10
 
 
-<a id="org62c6f91"></a>
+<a id="org381b706"></a>
 
 ## 변수
 
@@ -386,12 +388,12 @@ lisp에서는 변수를 심볼로 표현한다.
     3.141592
 
 
-<a id="org20d90d6"></a>
+<a id="org470aec2"></a>
 
 ## 연산자
 
 
-<a id="orgd95131e"></a>
+<a id="orgabb5c73"></a>
 
 ### 산술 연산자
 
@@ -458,7 +460,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org379cdca"></a>
+<a id="org0a96939"></a>
 
 ### 비교 연산자
 
@@ -539,7 +541,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="orgcedc233"></a>
+<a id="org733116f"></a>
 
 ### 논리연산자
 
@@ -592,7 +594,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org35ec367"></a>
+<a id="org861a4bb"></a>
 
 ### 이진 연산자
 
@@ -652,12 +654,12 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org63a869d"></a>
+<a id="orgab7c51e"></a>
 
 ## 조건문
 
 
-<a id="org46d4582"></a>
+<a id="orgf0805b6"></a>
 
 ### cond
 
@@ -671,7 +673,7 @@ lisp에서는 변수를 심볼로 표현한다.
 조건들에 따라 시행되는 form의 연속
 
 
-<a id="orgf045b6b"></a>
+<a id="org1a0ee89"></a>
 
 ### if
 
@@ -684,7 +686,7 @@ lisp에서는 변수를 심볼로 표현한다.
 첫번째 boolean값에 참이면 두 번째 변수를 거짓이면 세번째 변수를 실행한다.
 
 
-<a id="orgfbfb505"></a>
+<a id="org9583f25"></a>
 
 ### when
 
@@ -697,7 +699,7 @@ lisp에서는 변수를 심볼로 표현한다.
 if와 달리 조건문이 참일 경우에 만 실행한다.
 
 
-<a id="orgc007940"></a>
+<a id="org1fa7923"></a>
 
 ### case
 
@@ -713,12 +715,12 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
     Friday
 
 
-<a id="org48ae0b4"></a>
+<a id="orga89eb96"></a>
 
 ## 반복문
 
 
-<a id="org179e6d7"></a>
+<a id="orga0b2f35"></a>
 
 ### loop
 
@@ -730,7 +732,7 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
     10
 
 
-<a id="org53e0a35"></a>
+<a id="org74f48e7"></a>
 
 ### loop for
 
@@ -750,7 +752,7 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
     2 4 6 8 10 12 14 16 18 20 
 
 
-<a id="orgdf4d0de"></a>
+<a id="orge22384b"></a>
 
 ### do
 
@@ -771,7 +773,7 @@ do의 두번째 즉 (do (이 부분) 의 값은 변수와 변수의 변화를 �
 ((= x y) (- x y)) 이 부분은 반복시에 값을 검증하여 조건에 부합하면 반복이 종료된다.
 
 
-<a id="org3430d5d"></a>
+<a id="orgad56288"></a>
 
 ### dotimes
 
@@ -781,7 +783,7 @@ do의 두번째 즉 (do (이 부분) 의 값은 변수와 변수의 변화를 �
     0-0 1-1 2-4 3-9 4-16 5-25 6-36 7-49 8-64 9-81 10-100 
 
 
-<a id="org1e0371f"></a>
+<a id="org5dfc108"></a>
 
 ### dolist
 
@@ -808,7 +810,7 @@ javascript 처럼 콜백 체인 형식의 언어 페러다임에서 반환값을
     inner
 
 
-<a id="orge6570d9"></a>
+<a id="orgd606770"></a>
 
 ## 함수
 
@@ -819,7 +821,7 @@ javascript 처럼 콜백 체인 형식의 언어 페러다임에서 반환값을
     3
 
 
-<a id="orga20c2be"></a>
+<a id="org0336715"></a>
 
 ## 숫자 체계
 
@@ -836,7 +838,7 @@ lisp은 수학 체계를 잘 구현한 언어이다.
 ![img](images/number-system.svg)
 
 
-<a id="orgdac83f4"></a>
+<a id="orgd02b97b"></a>
 
 ### 수의 범주별 상세
 
@@ -905,7 +907,7 @@ lisp은 수학 체계를 잘 구현한 언어이다.
 이는 emacs lisp이 문서 편집에 특화된 언어이기 때문이다.
 
 
-<a id="orga798b07"></a>
+<a id="org7d4c1ab"></a>
 
 # E-Lisp
 
@@ -913,12 +915,12 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 앞서 수의 체계에서도 알 수 있듯이 목표로하는 이점이 다르기 때문이다. 이제 부터는 elisp을 이용한 텍스트 편집에 중점을 두려한다.
 
 
-<a id="org9a84109"></a>
+<a id="orgc753992"></a>
 
 ## Text Editing
 
 
-<a id="org21e1507"></a>
+<a id="orgf9a11bb"></a>
 
 ### 커서의 위치
 
@@ -938,7 +940,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (point-min)
 
 
-<a id="org037cc18"></a>
+<a id="org9bb063c"></a>
 
 ### 커서 이동 및 검색
 
@@ -958,7 +960,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (skip-chars-backward "a-z")
 
 
-<a id="orge04af5f"></a>
+<a id="org96aa96a"></a>
 
 ### 문자 삭제/삽입/변환
 
@@ -972,7 +974,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (capitalize-region 71 300)
 
 
-<a id="org2b488dc"></a>
+<a id="org80d935c"></a>
 
 ### 문자열
 
@@ -985,7 +987,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (replace-regexp-in-string "[0-9]" "X" "abc123")
 
 
-<a id="orgb983006"></a>
+<a id="org8ceb6ed"></a>
 
 ### 파일
 

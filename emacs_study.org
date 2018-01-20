@@ -1,4 +1,9 @@
+#+TITLE Emacs Lab
+
 * Emacs tutorial
+:PROPERTIES:
+:EXPORT_TITLE: ETC
+:END:
 ** Graphviz
 *** dot 문법
 기본적으로 json형식 같이 key value 형식과 유사하며 키에 분포적인 정의가 가미된 형태다.
@@ -68,6 +73,9 @@ graph: (graph | diagraph) [ID] 그래프의 형식을 선언하며 ID를 정의�
   #+RESULTS:
   [[file:images/test-dot2.png]]
 * Lisp 
+:PROPERTIES:
+:EXPORT_TITLE: Lisp
+:END:
   lisp을 배움으로 다양한 작업들을 자동화 할 수 있다. 일반적으로 vim을 사용할 때는 배쉬 쉘을 사용하듯
   emacs를 사용할 때에는 elips을 사용하여 작업을 수행한다. 두번째로 오래된 고수준 언어답게 언어의 완성도가 높으며
   다양하고 편리한 함수들이 이미 많이 구축되있다.
@@ -515,3 +523,76 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 (file-name-extenstion file-name)
 (file-name-sans-extension file-name)
 #+END_SRC
+*** 버퍼 
+#+BEGIN_SRC elisp :exports none
+(buffer-name)
+(buffer-file-name)
+
+;; xyz 버퍼로 현재 버퍼를 변경한다.
+(set-buffer "xyz")
+
+(save-buffer)
+(kill-buffer "xyz")
+(with-current-buffer "xyz"
+;; 해당 버퍼를 현재 작업 버퍼로 설정한다. 아래 부분에서 버퍼 편집에 관련된 작업들을 삽입한다.
+)
+#+END_SRC
+** 좀 더 익혀야할 것들
+*** Preserve Cursor Position
+텍스트 편집에 있어 명령어 간에 커서 간섭으로 인해 커서가 예상하지 못한 곳으로 이동하는 것을 방지하기 위해
+커서의 위치를 보존하는 함수를 사용한다.
+#+BEGIN_SRC elisp :exports none
+;; point, mark, buffer을 고정한다.
+(save-excursion
+;; 커서의 고정후 행위를 지정하는 영역.
+)
+
+;; 사용자가 지정한 narrow 영역을 보존한다. narrow란 너무 긴 문서에서 특정 영역만을 선택하고 다른 영역을 제외함을 뜻한다.
+(save-restriction
+  (narrow-to-region pos1 pos2)
+  ;; 행위 영역
+)
+#+END_SRC
+*** Grab Text from Buffer to String 
+#+BEGIN_SRC elisp
+;; 이맥스 텍스트들은 특정 프로퍼티를 내포하고 있어서 문자를 추출할 때 프로퍼티를 제거하는 작업이 필요하다.
+(buffer-substring-no-properties 99 200)
+
+;; 현재 커서의 단어를 반환
+(thing-at-point `word)
+
+;; hyphen(-)과 underscore(_)를 포함하는 단어를 반환한다.
+(thing-at-point `symbol)
+
+;; 현재 커서의 라인을 문자열로 반환
+(thing-at-point `line)
+
+;; 단어의 시작과 끝의 위치값을 반환 
+(bounds-of-thing-at-point `word)
+#+END_SRC
+*** Strings 
+#+BEGIN_SRC elisp :exports none
+;; 부분 문자열 추출
+(substring "abc" 1 2)
+
+;; 문자열 합치기
+(concat "some" "thing")
+
+;; 패턴 검증, 일치하는 문자의 갯수를 반환한다.
+(setq x "abc123")
+(string-match "\\(1\\)\\(2\\)" x)
+
+;; 정규식 패턴에 일치한 문자를 반환한다. 첫번째 매개변수는 패턴의 인덱스다
+;; 아래 예제에서 2는 (2) 정규식 패턴에 일치한 문자를 캡쳐하게된다.
+(match-string 2 x)
+
+;; 정규식에 일치한 문자를 다른 문자로 변환한다.
+(replace-regexp-in-string "1" "2" x)
+
+;; 문자열을 delimiter를 통해 분리하고 리스트로 반환한다.
+(listp (split-string "xy_007_cat" "_"))
+
+(string-to-number "3")
+(number-to-string 3)
+#+END_SRC
+
