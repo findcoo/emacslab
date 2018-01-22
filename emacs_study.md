@@ -1,59 +1,64 @@
 
 # Table of Contents
 
-1.  [Emacs tutorial](#org9384374)
-    1.  [Graphviz](#org06a41e3)
-        1.  [dot 문법](#org6c14a6d)
-        2.  [예제 받아 출력](#orgaeaf378)
-2.  [Lisp](#org7701076)
-    1.  [구조](#orgef92431)
-        1.  [프로그래밍 언어적 특징들](#org92b7f2b)
-        2.  [Naming Convention](#org07ca475)
-    2.  [자료형](#org41b1fc1)
-        1.  [자료형 표](#org896615c)
-    3.  [Macro](#org213a1fe)
-    4.  [변수](#org381b706)
-    5.  [연산자](#org470aec2)
-        1.  [산술 연산자](#orgabb5c73)
-        2.  [비교 연산자](#org0a96939)
-        3.  [논리연산자](#org733116f)
-        4.  [이진 연산자](#org861a4bb)
-    6.  [조건문](#orgab7c51e)
-        1.  [cond](#orgf0805b6)
-        2.  [if](#org1a0ee89)
-        3.  [when](#org9583f25)
-        4.  [case](#org1fa7923)
-    7.  [반복문](#orga89eb96)
-        1.  [loop](#orga0b2f35)
-        2.  [loop for](#org74f48e7)
-        3.  [do](#orge22384b)
-        4.  [dotimes](#orgad56288)
-        5.  [dolist](#org5dfc108)
-    8.  [함수](#orgd606770)
-    9.  [숫자 체계](#org0336715)
-        1.  [수의 범주별 상세](#orgd02b97b)
-3.  [E-Lisp](#org7d4c1ab)
-    1.  [Text Editing](#orgc753992)
-        1.  [커서의 위치](#orgf9a11bb)
-        2.  [커서 이동 및 검색](#org9bb063c)
-        3.  [문자 삭제/삽입/변환](#org96aa96a)
-        4.  [문자열](#org80d935c)
-        5.  [파일](#org8ceb6ed)
+1.  [Emacs tutorial](#orgdb32587)
+    1.  [Graphviz](#org831c410)
+        1.  [dot 문법](#org620dfa7)
+        2.  [예제 받아 출력](#orgbc46812)
+2.  [Lisp](#org6303b45)
+    1.  [구조](#org7bcdbad)
+        1.  [프로그래밍 언어적 특징들](#org2026ada)
+        2.  [Naming Convention](#org4e11fc2)
+    2.  [자료형](#orgfa9bc50)
+        1.  [자료형 표](#orgf653694)
+    3.  [Macro](#org64ef026)
+    4.  [변수](#orgd434263)
+    5.  [연산자](#org2598e03)
+        1.  [산술 연산자](#org66bb82e)
+        2.  [비교 연산자](#orgf217081)
+        3.  [논리연산자](#org493a0e4)
+        4.  [이진 연산자](#org89d9599)
+    6.  [조건문](#org8288b9d)
+        1.  [cond](#org68a48f3)
+        2.  [if](#orgb809cea)
+        3.  [when](#org44f9e36)
+        4.  [case](#orgc58151f)
+    7.  [반복문](#orgb636933)
+        1.  [loop](#org86c7f4b)
+        2.  [loop for](#org3afccce)
+        3.  [do](#org3ecf1ba)
+        4.  [dotimes](#orga7f2b4f)
+        5.  [dolist](#org2ac47e3)
+    8.  [함수](#org3378d91)
+    9.  [숫자 체계](#orgc4b300f)
+        1.  [수의 범주별 상세](#orgd862a45)
+3.  [E-Lisp](#orga0b298e)
+    1.  [Text Editing](#orgb79691e)
+        1.  [커서의 위치](#org333ef88)
+        2.  [커서 이동 및 검색](#org63c4433)
+        3.  [문자 삭제/삽입/변환](#org7156eb2)
+        4.  [문자열](#orgb4edb78)
+        5.  [파일](#org4af59c1)
+        6.  [버퍼](#org6ec06bb)
+    2.  [좀 더 익혀야할 것들](#org4db40f8)
+        1.  [Preserve Cursor Position](#orgcd6543b)
+        2.  [Grab Text from Buffer to String](#org99b7eb5)
+        3.  [Strings](#orgb4a7abd)
 
 \#+TITLE Emacs Lab
 
 
-<a id="org9384374"></a>
+<a id="orgdb32587"></a>
 
 # Emacs tutorial
 
 
-<a id="org06a41e3"></a>
+<a id="org831c410"></a>
 
 ## Graphviz
 
 
-<a id="org6c14a6d"></a>
+<a id="org620dfa7"></a>
 
 ### dot 문법
 
@@ -73,11 +78,11 @@
     ![img](images/example1.svg)
 
 
-<a id="orgaeaf378"></a>
+<a id="orgbc46812"></a>
 
 ### 예제 받아 출력
 
-<table id="org45fc37b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org38e3698" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -135,7 +140,7 @@
     ![img](images/test-dot2.png)
 
 
-<a id="org7701076"></a>
+<a id="org6303b45"></a>
 
 # Lisp
 
@@ -144,7 +149,7 @@ emacs를 사용할 때에는 elips을 사용하여 작업을 수행한다. 두�
 다양하고 편리한 함수들이 이미 많이 구축되있다.
 
 
-<a id="orgef92431"></a>
+<a id="org7bcdbad"></a>
 
 ## 구조
 
@@ -177,7 +182,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
     atom 1 출력
 
 
-<a id="org92b7f2b"></a>
+<a id="org2026ada"></a>
 
 ### 프로그래밍 언어적 특징들
 
@@ -187,7 +192,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
 -   상수적 혹은 primary 타입같은 요소는 오직 세가지 존재하며 숫자, t, nil이다.(t = true, nil = false)
 
 
-<a id="org07ca475"></a>
+<a id="org4e11fc2"></a>
 
 ### Naming Convention
 
@@ -202,7 +207,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
     (+ 3 3)
 
 
-<a id="org41b1fc1"></a>
+<a id="orgfa9bc50"></a>
 
 ## 자료형
 
@@ -235,7 +240,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
 위에서 주의할 것이 있는데 nil의 자료형이다. t일 경우 t를 반환하지만 nil일 경우 nil을 반환하다.
 
 
-<a id="org896615c"></a>
+<a id="orgf653694"></a>
 
 ### 자료형 표
 
@@ -343,7 +348,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
 </table>
 
 
-<a id="org213a1fe"></a>
+<a id="org64ef026"></a>
 
 ## Macro
 
@@ -356,7 +361,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
     10
 
 
-<a id="org381b706"></a>
+<a id="orgd434263"></a>
 
 ## 변수
 
@@ -388,12 +393,12 @@ lisp에서는 변수를 심볼로 표현한다.
     3.141592
 
 
-<a id="org470aec2"></a>
+<a id="org2598e03"></a>
 
 ## 연산자
 
 
-<a id="orgabb5c73"></a>
+<a id="org66bb82e"></a>
 
 ### 산술 연산자
 
@@ -460,7 +465,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org0a96939"></a>
+<a id="orgf217081"></a>
 
 ### 비교 연산자
 
@@ -541,7 +546,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org733116f"></a>
+<a id="org493a0e4"></a>
 
 ### 논리연산자
 
@@ -594,7 +599,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org861a4bb"></a>
+<a id="org89d9599"></a>
 
 ### 이진 연산자
 
@@ -654,12 +659,12 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="orgab7c51e"></a>
+<a id="org8288b9d"></a>
 
 ## 조건문
 
 
-<a id="orgf0805b6"></a>
+<a id="org68a48f3"></a>
 
 ### cond
 
@@ -673,7 +678,7 @@ lisp에서는 변수를 심볼로 표현한다.
 조건들에 따라 시행되는 form의 연속
 
 
-<a id="org1a0ee89"></a>
+<a id="orgb809cea"></a>
 
 ### if
 
@@ -686,7 +691,7 @@ lisp에서는 변수를 심볼로 표현한다.
 첫번째 boolean값에 참이면 두 번째 변수를 거짓이면 세번째 변수를 실행한다.
 
 
-<a id="org9583f25"></a>
+<a id="org44f9e36"></a>
 
 ### when
 
@@ -699,7 +704,7 @@ lisp에서는 변수를 심볼로 표현한다.
 if와 달리 조건문이 참일 경우에 만 실행한다.
 
 
-<a id="org1fa7923"></a>
+<a id="orgc58151f"></a>
 
 ### case
 
@@ -715,12 +720,12 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
     Friday
 
 
-<a id="orga89eb96"></a>
+<a id="orgb636933"></a>
 
 ## 반복문
 
 
-<a id="orga0b2f35"></a>
+<a id="org86c7f4b"></a>
 
 ### loop
 
@@ -732,7 +737,7 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
     10
 
 
-<a id="org74f48e7"></a>
+<a id="org3afccce"></a>
 
 ### loop for
 
@@ -752,7 +757,7 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
     2 4 6 8 10 12 14 16 18 20 
 
 
-<a id="orge22384b"></a>
+<a id="org3ecf1ba"></a>
 
 ### do
 
@@ -773,7 +778,7 @@ do의 두번째 즉 (do (이 부분) 의 값은 변수와 변수의 변화를 �
 ((= x y) (- x y)) 이 부분은 반복시에 값을 검증하여 조건에 부합하면 반복이 종료된다.
 
 
-<a id="orgad56288"></a>
+<a id="orga7f2b4f"></a>
 
 ### dotimes
 
@@ -783,7 +788,7 @@ do의 두번째 즉 (do (이 부분) 의 값은 변수와 변수의 변화를 �
     0-0 1-1 2-4 3-9 4-16 5-25 6-36 7-49 8-64 9-81 10-100 
 
 
-<a id="org5dfc108"></a>
+<a id="org2ac47e3"></a>
 
 ### dolist
 
@@ -810,7 +815,7 @@ javascript 처럼 콜백 체인 형식의 언어 페러다임에서 반환값을
     inner
 
 
-<a id="orgd606770"></a>
+<a id="org3378d91"></a>
 
 ## 함수
 
@@ -821,7 +826,7 @@ javascript 처럼 콜백 체인 형식의 언어 페러다임에서 반환값을
     3
 
 
-<a id="org0336715"></a>
+<a id="orgc4b300f"></a>
 
 ## 숫자 체계
 
@@ -838,7 +843,7 @@ lisp은 수학 체계를 잘 구현한 언어이다.
 ![img](images/number-system.svg)
 
 
-<a id="orgd02b97b"></a>
+<a id="orgd862a45"></a>
 
 ### 수의 범주별 상세
 
@@ -907,7 +912,7 @@ lisp은 수학 체계를 잘 구현한 언어이다.
 이는 emacs lisp이 문서 편집에 특화된 언어이기 때문이다.
 
 
-<a id="org7d4c1ab"></a>
+<a id="orga0b298e"></a>
 
 # E-Lisp
 
@@ -915,12 +920,12 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 앞서 수의 체계에서도 알 수 있듯이 목표로하는 이점이 다르기 때문이다. 이제 부터는 elisp을 이용한 텍스트 편집에 중점을 두려한다.
 
 
-<a id="orgc753992"></a>
+<a id="orgb79691e"></a>
 
 ## Text Editing
 
 
-<a id="orgf9a11bb"></a>
+<a id="org333ef88"></a>
 
 ### 커서의 위치
 
@@ -940,7 +945,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (point-min)
 
 
-<a id="org9bb063c"></a>
+<a id="org63c4433"></a>
 
 ### 커서 이동 및 검색
 
@@ -960,7 +965,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (skip-chars-backward "a-z")
 
 
-<a id="org96aa96a"></a>
+<a id="org7156eb2"></a>
 
 ### 문자 삭제/삽입/변환
 
@@ -974,7 +979,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (capitalize-region 71 300)
 
 
-<a id="org80d935c"></a>
+<a id="orgb4edb78"></a>
 
 ### 문자열
 
@@ -987,7 +992,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (replace-regexp-in-string "[0-9]" "X" "abc123")
 
 
-<a id="org8ceb6ed"></a>
+<a id="org4af59c1"></a>
 
 ### 파일
 
@@ -1012,4 +1017,103 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (file-name-nondirectory full-path)
     (file-name-extenstion file-name)
     (file-name-sans-extension file-name)
+
+
+<a id="org6ec06bb"></a>
+
+### 버퍼
+
+    (buffer-name)
+    (buffer-file-name)
+    
+    ;; xyz 버퍼로 현재 버퍼를 변경한다.
+    (set-buffer "xyz")
+    
+    (save-buffer)
+    (kill-buffer "xyz")
+    (with-current-buffer "xyz"
+    ;; 해당 버퍼를 현재 작업 버퍼로 설정한다. 아래 부분에서 버퍼 편집에 관련된 작업들을 삽입한다.
+    )
+
+
+<a id="org4db40f8"></a>
+
+## 좀 더 익혀야할 것들
+
+
+<a id="orgcd6543b"></a>
+
+### Preserve Cursor Position
+
+텍스트 편집에 있어 명령어 간에 커서 간섭으로 인해 커서가 예상하지 못한 곳으로 이동하는 것을 방지하기 위해
+커서의 위치를 보존하는 함수를 사용한다.
+
+    ;; point, mark, buffer을 고정한다.
+    (save-excursion
+    ;; 커서의 고정후 행위를 지정하는 영역.
+    )
+    
+    ;; 사용자가 지정한 narrow 영역을 보존한다. narrow란 너무 긴 문서에서 특정 영역만을 선택하고 다른 영역을 제외함을 뜻한다.
+    (save-restriction
+      (narrow-to-region pos1 pos2)
+      ;; 행위 영역
+    )
+
+
+<a id="org99b7eb5"></a>
+
+### Grab Text from Buffer to String
+
+    ;; 이맥스 텍스트들은 특정 프로퍼티를 내포하고 있어서 문자를 추출할 때 프로퍼티를 제거하는 작업이 필요하다.
+    (buffer-substring-no-properties 99 200)
+    
+    ;; 현재 커서의 단어를 반환
+    (thing-at-point `word)
+    
+    ;; hyphen(-)과 underscore(_)를 포함하는 단어를 반환한다.
+    (thing-at-point `symbol)
+    
+    ;; 현재 커서의 라인을 문자열로 반환
+    (thing-at-point `line)
+    
+    ;; 단어의 시작과 끝의 위치값을 반환 
+    (bounds-of-thing-at-point `word)
+
+
+<a id="orgb4a7abd"></a>
+
+### Strings
+
+    ;; 부분 문자열 추출
+    (substring "abc" 1 2)
+    
+    ;; 문자열 합치기
+    (concat "some" "thing")
+    
+    ;; 패턴 검증, 일치하는 문자의 갯수를 반환한다.
+    (setq x "abc123")
+    (string-match "\\(1\\)\\(2\\)" x)
+    
+    ;; 정규식 패턴에 일치한 문자를 반환한다. 첫번째 매개변수는 패턴의 인덱스다
+    ;; 아래 예제에서 2는 (2) 정규식 패턴에 일치한 문자를 캡쳐하게된다.
+    (match-string 2 x)
+    
+    ;; 정규식에 일치한 문자를 다른 문자로 변환한다.
+    (replace-regexp-in-string "1" "2" x)
+    
+    ;; 문자열을 delimiter를 통해 분리하고 리스트로 반환한다.
+    (listp (split-string "xy_007_cat" "_"))
+    
+    (string-to-number "3")
+    (number-to-string 3)
+    
+    (setq testBuffer (buffer-string))
+    (with-temp-buffer
+      (insert testBuffer)
+      (goto-char (point-min))
+      ;; 작업 시작점
+    
+      ;; 임시 버퍼에 모든 문자열을 반환시킨다.
+      (buffer-string)
+    )
 
