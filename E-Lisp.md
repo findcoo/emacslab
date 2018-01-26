@@ -1,21 +1,21 @@
 
 # Table of Contents
 
-1.  [E-Lisp](#orgf39dd18)
-    1.  [Text Editing](#orgc9fbb96)
-        1.  [커서의 위치](#orge141a5f)
-        2.  [커서 이동 및 검색](#org88ce7b9)
-        3.  [문자 삭제/삽입/변환](#org7a918f7)
-        4.  [문자열](#orgc4b0cc3)
-        5.  [파일](#orgd8ddaad)
-        6.  [버퍼](#org6c744da)
-    2.  [좀 더 익혀야할 것들](#org8a51b6c)
-        1.  [Preserve Cursor Position](#orga1e4cda)
-        2.  [Grab Text from Buffer to String](#org473c005)
-        3.  [Strings](#orgd47cd9d)
+1.  [E-Lisp](#org9fa466e)
+    1.  [Text Editing](#org00a3ea8)
+        1.  [커서의 위치](#org499ebed)
+        2.  [커서 이동 및 검색](#org905c06f)
+        3.  [문자 삭제/삽입/변환](#org366a44e)
+        4.  [문자열](#org92fe1f9)
+        5.  [파일](#org5048822)
+        6.  [버퍼](#orgfe87335)
+    2.  [좀 더 익혀야할 것들](#org779a417)
+        1.  [Preserve Cursor Position](#orga2cac90)
+        2.  [Grab Text from Buffer to String](#org69b21df)
+        3.  [Strings](#orgf15641b)
 
 
-<a id="orgf39dd18"></a>
+<a id="org9fa466e"></a>
 
 # E-Lisp
 
@@ -23,12 +23,12 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 앞서 수의 체계에서도 알 수 있듯이 목표로하는 이점이 다르기 때문이다. 이제 부터는 elisp을 이용한 텍스트 편집에 중점을 두려한다.
 
 
-<a id="orgc9fbb96"></a>
+<a id="org00a3ea8"></a>
 
 ## Text Editing
 
 
-<a id="orge141a5f"></a>
+<a id="org499ebed"></a>
 
 ### 커서의 위치
 
@@ -48,7 +48,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (point-min)
 
 
-<a id="org88ce7b9"></a>
+<a id="org905c06f"></a>
 
 ### 커서 이동 및 검색
 
@@ -68,7 +68,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (skip-chars-backward "a-z")
 
 
-<a id="org7a918f7"></a>
+<a id="org366a44e"></a>
 
 ### 문자 삭제/삽입/변환
 
@@ -82,7 +82,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (capitalize-region 71 300)
 
 
-<a id="orgc4b0cc3"></a>
+<a id="org92fe1f9"></a>
 
 ### 문자열
 
@@ -95,7 +95,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (replace-regexp-in-string "[0-9]" "X" "abc123")
 
 
-<a id="orgd8ddaad"></a>
+<a id="org5048822"></a>
 
 ### 파일
 
@@ -122,7 +122,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (file-name-sans-extension file-name)
 
 
-<a id="org6c744da"></a>
+<a id="orgfe87335"></a>
 
 ### 버퍼
 
@@ -139,20 +139,31 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     )
 
 
-<a id="org8a51b6c"></a>
+<a id="org779a417"></a>
 
 ## 좀 더 익혀야할 것들
 
 
-<a id="orga1e4cda"></a>
+<a id="orga2cac90"></a>
 
 ### Preserve Cursor Position
 
 텍스트 편집에 있어 명령어 간에 커서 간섭으로 인해 커서가 예상하지 못한 곳으로 이동하는 것을 방지하기 위해
 커서의 위치를 보존하는 함수를 사용한다.
 
+    ;; point, mark, buffer을 고정한다.
+    (save-excursion
+    ;; 커서의 고정후 행위를 지정하는 영역.
+    )
+    
+    ;; 사용자가 지정한 narrow 영역을 보존한다. narrow란 너무 긴 문서에서 특정 영역만을 선택하고 다른 영역을 제외함을 뜻한다.
+    (save-restriction
+      (narrow-to-region pos1 pos2)
+      ;; 행위 영역
+    )
 
-<a id="org473c005"></a>
+
+<a id="org69b21df"></a>
 
 ### Grab Text from Buffer to String
 
@@ -172,7 +183,40 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
     (bounds-of-thing-at-point `word)
 
 
-<a id="orgd47cd9d"></a>
+<a id="orgf15641b"></a>
 
 ### Strings
+
+    ;; 부분 문자열 추출
+    (substring "abc" 1 2)
+    
+    ;; 문자열 합치기
+    (concat "some" "thing")
+    
+    ;; 패턴 검증, 일치하는 문자의 갯수를 반환한다.
+    (setq x "abc123")
+    (string-match "\\(1\\)\\(2\\)" x)
+    
+    ;; 정규식 패턴에 일치한 문자를 반환한다. 첫번째 매개변수는 패턴의 인덱스다
+    ;; 아래 예제에서 2는 (2) 정규식 패턴에 일치한 문자를 캡쳐하게된다.
+    (match-string 2 x)
+    
+    ;; 정규식에 일치한 문자를 다른 문자로 변환한다.
+    (replace-regexp-in-string "1" "2" x)
+    
+    ;; 문자열을 delimiter를 통해 분리하고 리스트로 반환한다.
+    (listp (split-string "xy_007_cat" "_"))
+    
+    (string-to-number "3")
+    (number-to-string 3)
+    
+    (setq testBuffer (buffer-string))
+    (with-temp-buffer
+      (insert testBuffer)
+      (goto-char (point-min))
+      ;; 작업 시작점
+    
+      ;; 임시 버퍼에 모든 문자열을 반환시킨다.
+      (buffer-string)
+    )
 

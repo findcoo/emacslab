@@ -533,7 +533,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 *** Preserve Cursor Position
 텍스트 편집에 있어 명령어 간에 커서 간섭으로 인해 커서가 예상하지 못한 곳으로 이동하는 것을 방지하기 위해
 커서의 위치를 보존하는 함수를 사용한다.
-#+BEGIN_SRC elisp :exports none
+#+BEGIN_SRC elisp
 ;; point, mark, buffer을 고정한다.
 (save-excursion
 ;; 커서의 고정후 행위를 지정하는 영역.
@@ -563,7 +563,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 (bounds-of-thing-at-point `word)
 #+END_SRC
 *** Strings 
-#+BEGIN_SRC elisp :exports none
+#+BEGIN_SRC elisp
 ;; 부분 문자열 추출
 (substring "abc" 1 2)
 

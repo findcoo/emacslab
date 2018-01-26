@@ -1,36 +1,36 @@
 
 # Table of Contents
 
-1.  [Lisp](#org382679e)
-    1.  [구조](#org22a6435)
-        1.  [프로그래밍 언어적 특징들](#org96687da)
-        2.  [Naming Convention](#org9104435)
-    2.  [자료형](#orgf5f91ca)
-        1.  [자료형 표](#orgfe4ca20)
-    3.  [Macro](#orge35cd7c)
-    4.  [변수](#org0cf3a75)
-    5.  [연산자](#orgde9b0c7)
-        1.  [산술 연산자](#org6d06230)
-        2.  [비교 연산자](#org876225d)
-        3.  [논리연산자](#org20f202c)
-        4.  [이진 연산자](#orga94e577)
-    6.  [조건문](#orgdb10bc1)
-        1.  [cond](#org02c270b)
-        2.  [if](#orgc3d5a9a)
-        3.  [when](#orgf2a384d)
-        4.  [case](#orgd8173bf)
-    7.  [반복문](#orgc68791f)
-        1.  [loop](#org954e2d5)
-        2.  [loop for](#orgcfd2c4f)
-        3.  [do](#orga4401f4)
-        4.  [dotimes](#org346c044)
-        5.  [dolist](#orgfd43d5c)
-    8.  [함수](#orge860001)
-    9.  [숫자 체계](#org35cb69c)
-        1.  [수의 범주별 상세](#orga3912b9)
+1.  [Lisp](#orgf28bbf3)
+    1.  [구조](#org1a5c187)
+        1.  [프로그래밍 언어적 특징들](#org90e214e)
+        2.  [Naming Convention](#org3e8e230)
+    2.  [자료형](#org1174108)
+        1.  [자료형 표](#org20f9e2c)
+    3.  [Macro](#org2dc7719)
+    4.  [변수](#orgbaca980)
+    5.  [연산자](#org822f8ec)
+        1.  [산술 연산자](#org287ec33)
+        2.  [비교 연산자](#orgab83a64)
+        3.  [논리연산자](#org2e76e95)
+        4.  [이진 연산자](#orga0facfc)
+    6.  [조건문](#org54fa293)
+        1.  [cond](#orga2d349c)
+        2.  [if](#orgf4ff6c8)
+        3.  [when](#orga87d4e7)
+        4.  [case](#org3398ea3)
+    7.  [반복문](#orgffdd5fe)
+        1.  [loop](#orge8bf9d5)
+        2.  [loop for](#orgcef0ac3)
+        3.  [do](#orgebda84b)
+        4.  [dotimes](#orgf7cdd32)
+        5.  [dolist](#org6e78281)
+    8.  [함수](#orgd5873fa)
+    9.  [숫자 체계](#orgbfbfee5)
+        1.  [수의 범주별 상세](#org17ff3cf)
 
 
-<a id="org382679e"></a>
+<a id="orgf28bbf3"></a>
 
 # Lisp
 
@@ -39,7 +39,7 @@ emacs를 사용할 때에는 elips을 사용하여 작업을 수행한다. 두�
 다양하고 편리한 함수들이 이미 많이 구축되있다.
 
 
-<a id="org22a6435"></a>
+<a id="org1a5c187"></a>
 
 ## 구조
 
@@ -65,7 +65,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
     (princ (format "atom %d 출력" 1))
 
 
-<a id="org96687da"></a>
+<a id="org90e214e"></a>
 
 ### 프로그래밍 언어적 특징들
 
@@ -75,7 +75,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
 -   상수적 혹은 primary 타입같은 요소는 오직 세가지 존재하며 숫자, t, nil이다.(t = true, nil = false)
 
 
-<a id="org9104435"></a>
+<a id="org3e8e230"></a>
 
 ### Naming Convention
 
@@ -87,7 +87,7 @@ s-epxressions는 objects, atoms, lists 세 가지 요소로 구성되는 표현�
     (princ `(+ 3 3))
 
 
-<a id="orgf5f91ca"></a>
+<a id="org1174108"></a>
 
 ## 자료형
 
@@ -111,7 +111,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
 위에서 주의할 것이 있는데 nil의 자료형이다. t일 경우 t를 반환하지만 nil일 경우 nil을 반환하다.
 
 
-<a id="orgfe4ca20"></a>
+<a id="org20f9e2c"></a>
 
 ### 자료형 표
 
@@ -219,7 +219,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
 </table>
 
 
-<a id="orge35cd7c"></a>
+<a id="org2dc7719"></a>
 
 ## Macro
 
@@ -230,7 +230,7 @@ typep 함수는 변수의 자료형을 확인하여 일치시 t 일치하지 않
     (setTo10 25)
 
 
-<a id="org0cf3a75"></a>
+<a id="orgbaca980"></a>
 
 ## 변수
 
@@ -254,12 +254,12 @@ lisp에서는 변수를 심볼로 표현한다.
     (prin1 PI)
 
 
-<a id="orgde9b0c7"></a>
+<a id="org822f8ec"></a>
 
 ## 연산자
 
 
-<a id="org6d06230"></a>
+<a id="org287ec33"></a>
 
 ### 산술 연산자
 
@@ -326,7 +326,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org876225d"></a>
+<a id="orgab83a64"></a>
 
 ### 비교 연산자
 
@@ -407,7 +407,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="org20f202c"></a>
+<a id="org2e76e95"></a>
 
 ### 논리연산자
 
@@ -460,7 +460,7 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="orga94e577"></a>
+<a id="orga0facfc"></a>
 
 ### 이진 연산자
 
@@ -520,12 +520,12 @@ lisp에서는 변수를 심볼로 표현한다.
 </table>
 
 
-<a id="orgdb10bc1"></a>
+<a id="org54fa293"></a>
 
 ## 조건문
 
 
-<a id="org02c270b"></a>
+<a id="orga2d349c"></a>
 
 ### cond
 
@@ -537,7 +537,7 @@ lisp에서는 변수를 심볼로 표현한다.
 조건들에 따라 시행되는 form의 연속
 
 
-<a id="orgc3d5a9a"></a>
+<a id="orgf4ff6c8"></a>
 
 ### if
 
@@ -547,7 +547,7 @@ lisp에서는 변수를 심볼로 표현한다.
 첫번째 boolean값에 참이면 두 번째 변수를 거짓이면 세번째 변수를 실행한다.
 
 
-<a id="orgf2a384d"></a>
+<a id="orga87d4e7"></a>
 
 ### when
 
@@ -557,7 +557,7 @@ lisp에서는 변수를 심볼로 표현한다.
 if와 달리 조건문이 참일 경우에 만 실행한다.
 
 
-<a id="orgd8173bf"></a>
+<a id="org3398ea3"></a>
 
 ### case
 
@@ -571,12 +571,12 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
       (6 (prin1 "Sunday")))
 
 
-<a id="orgc68791f"></a>
+<a id="orgffdd5fe"></a>
 
 ## 반복문
 
 
-<a id="org954e2d5"></a>
+<a id="orge8bf9d5"></a>
 
 ### loop
 
@@ -586,7 +586,7 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
       (when (>= a 10) (return a)))
 
 
-<a id="orgcfd2c4f"></a>
+<a id="orgcef0ac3"></a>
 
 ### loop for
 
@@ -600,7 +600,7 @@ if와 달리 조건문이 참일 경우에 만 실행한다.
       if(evenp x) do (princ (format "%d " x)))
 
 
-<a id="orga4401f4"></a>
+<a id="orgebda84b"></a>
 
 ### do
 
@@ -615,7 +615,7 @@ do의 두번째 즉 (do (이 부분) 의 값은 변수와 변수의 변화를 �
 ((= x y) (- x y)) 이 부분은 반복시에 값을 검증하여 조건에 부합하면 반복이 종료된다.
 
 
-<a id="org346c044"></a>
+<a id="orgf7cdd32"></a>
 
 ### dotimes
 
@@ -623,7 +623,7 @@ do의 두번째 즉 (do (이 부분) 의 값은 변수와 변수의 변화를 �
     (princ n) (princ (format "-%d " (* n n))))
 
 
-<a id="orgfd43d5c"></a>
+<a id="org6e78281"></a>
 
 ### dolist
 
@@ -646,7 +646,7 @@ javascript 처럼 콜백 체인 형식의 언어 페러다임에서 반환값을
     (block-test nil)
 
 
-<a id="orge860001"></a>
+<a id="orgd5873fa"></a>
 
 ## 함수
 
@@ -655,7 +655,7 @@ javascript 처럼 콜백 체인 형식의 언어 페러다임에서 반환값을
     (averageNum 3 3 3)
 
 
-<a id="org35cb69c"></a>
+<a id="orgbfbfee5"></a>
 
 ## 숫자 체계
 
@@ -664,7 +664,7 @@ lisp은 수학 체계를 잘 구현한 언어이다.
 ![img](images/number-system.svg)
 
 
-<a id="orga3912b9"></a>
+<a id="org17ff3cf"></a>
 
 ### 수의 범주별 상세
 
