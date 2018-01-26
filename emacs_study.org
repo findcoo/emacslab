@@ -437,7 +437,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 앞서 수의 체계에서도 알 수 있듯이 목표로하는 이점이 다르기 때문이다. 이제 부터는 elisp을 이용한 텍스트 편집에 중점을 두려한다.
 ** Text Editing
 *** 커서의 위치
-#+BEGIN_SRC elisp :exports none
+#+BEGIN_SRC elisp
 ;; 현재 커서의 위치값 왼쪽부터 시작된다.
 (point)
 
@@ -454,7 +454,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 (point-min)
 #+END_SRC
 *** 커서 이동 및 검색 
-#+BEGIN_SRC elisp :exports none
+#+BEGIN_SRC elisp
 (goto-char 39)
 
 (forward-char 4)
@@ -471,7 +471,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 (skip-chars-backward "a-z")
 #+END_SRC
 *** 문자 삭제/삽입/변환 
-#+BEGIN_SRC elisp :exports none
+#+BEGIN_SRC elisp
 (delete-char 9)
 (delete-region 3 10)
 
@@ -482,7 +482,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 (capitalize-region 71 300)
 #+END_SRC
 *** 문자열
-#+BEGIN_SRC elisp :epxorts none
+#+BEGIN_SRC elisp
 (length "abc")
 
 ;; a 이후 부터 e까지의 문자열 값
@@ -492,7 +492,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 (replace-regexp-in-string "[0-9]" "X" "abc123")
 #+END_SRC
 *** 파일 
-#+BEGIN_SRC elisp :exports none
+#+BEGIN_SRC elisp
 ;; 현재 버퍼에 해당 파일을 연다.
 (find-file "~/.spacemacs")
 
@@ -516,7 +516,7 @@ common lisp은 일반적인 프로그래밍 언어를 목표로 하기 때문에
 (file-name-sans-extension file-name)
 #+END_SRC
 *** 버퍼 
-#+BEGIN_SRC elisp :exports none
+#+BEGIN_SRC elisp
 (buffer-name)
 (buffer-file-name)
 
