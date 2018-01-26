@@ -1,9 +1,4 @@
-#+TITLE Emacs Lab
-
-* Emacs tutorial
-:PROPERTIES:
-:EXPORT_TITLE: ETC
-:END:
+* Emacs Tutorial
 ** Graphviz
 *** dot 문법
 기본적으로 json형식 같이 key value 형식과 유사하며 키에 분포적인 정의가 가미된 형태다.
@@ -73,9 +68,6 @@ graph: (graph | diagraph) [ID] 그래프의 형식을 선언하며 ID를 정의�
   #+RESULTS:
   [[file:images/test-dot2.png]]
 * Lisp 
-:PROPERTIES:
-:EXPORT_TITLE: Lisp
-:END:
   lisp을 배움으로 다양한 작업들을 자동화 할 수 있다. 일반적으로 vim을 사용할 때는 배쉬 쉘을 사용하듯
   emacs를 사용할 때에는 elips을 사용하여 작업을 수행한다. 두번째로 오래된 고수준 언어답게 언어의 완성도가 높으며
   다양하고 편리한 함수들이 이미 많이 구축되있다.
